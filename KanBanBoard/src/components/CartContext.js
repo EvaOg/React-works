@@ -1,5 +1,5 @@
 import { v4 as uuidv4 } from "uuid";
-import { createContext, useState } from "react";
+import { createContext, useState, useEffect } from "react";
 const CartContext = createContext();
 
 export function CartProvider({ children }) {
@@ -26,6 +26,30 @@ export function CartProvider({ children }) {
   const deleteFinishedCardHandler = (id) => {
     setFinishedCards(finishedCards.filter((card) => card.id !== id));
   };
+
+  //Storage cards
+
+  useEffect(() => {
+    const data = window.localStorage.getItem("cardsStorage");
+    setCards(JSON.parse(data));
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem("cardsStorage", JSON.stringify(cards));
+  }, [cards]);
+
+  //Storage finishedCards
+  useEffect(() => {
+    const data2 = window.localStorage.getItem("finishedCardsStorage");
+    setFinishedCards(JSON.parse(data2));
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      "finishedCardsStorage",
+      JSON.stringify(finishedCards)
+    );
+  }, [finishedCards]);
 
   return (
     <CartContext.Provider

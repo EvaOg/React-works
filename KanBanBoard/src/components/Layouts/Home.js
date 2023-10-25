@@ -1,5 +1,5 @@
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext, useState, useEffect } from "react";
 
 import styles from "../Components.module.css";
 
@@ -69,6 +69,18 @@ function Home() {
   const taskExplanationHandler = (text) => {
     return navigate("/:task", { state: text });
   };
+
+  // useEffect(() => {
+  //   const data3 = window.localStorage.getItem("readyCardsStorage");
+  //   setReadyCards(JSON.parse(data3));
+  // }, []);
+
+  // useEffect(() => {
+  //   window.localStorage.setItem(
+  //     "readyCardsStorage",
+  //     JSON.stringify(readyCards)
+  //   );
+  // }, [readyCards]);
 
   return (
     <div className={styles.home}>
