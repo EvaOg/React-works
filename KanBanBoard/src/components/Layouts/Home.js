@@ -46,10 +46,12 @@ function Home() {
   };
 
   function addtoReadyHandler(x) {
-    const newReadyCard = cards.find((card) => x === card.id);
-    setCards(cards.filter((card) => card.id !== x));
-    setReadyCards([...readyCards, newReadyCard]);
-    setOption(!option);
+    if (cards && cards.length > 0) {
+      const newReadyCard = cards.find((card) => x === card.id);
+      setCards(cards.filter((card) => card.id !== x));
+      setReadyCards([...readyCards, newReadyCard]);
+      setOption(!option);
+    }
   }
 
   function addtoInProgressHandler(x) {
@@ -70,17 +72,31 @@ function Home() {
     return navigate("/:task", { state: text });
   };
 
-  // useEffect(() => {
-  //   const data3 = window.localStorage.getItem("readyCardsStorage");
-  //   setReadyCards(JSON.parse(data3));
-  // }, []);
+  //Storage readyCards
+  useEffect(() => {
+    const data3 = window.localStorage.getItem("readyCardsStorage");
+    if (data3 !== null) setReadyCards(JSON.parse(data3));
+  }, []);
 
-  // useEffect(() => {
-  //   window.localStorage.setItem(
-  //     "readyCardsStorage",
-  //     JSON.stringify(readyCards)
-  //   );
-  // }, [readyCards]);
+  useEffect(() => {
+    window.localStorage.setItem(
+      "readyCardsStorage",
+      JSON.stringify(readyCards)
+    );
+  }, [readyCards]);
+
+  //Storage inProgressCards
+  useEffect(() => {
+    const data4 = window.localStorage.getItem("inProgressCardsStorage");
+    if (data4 !== null) setInProgressCards(JSON.parse(data4));
+  }, []);
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      "inProgressCardsStorage",
+      JSON.stringify(inProgressCards)
+    );
+  }, [inProgressCards]);
 
   return (
     <div className={styles.home}>

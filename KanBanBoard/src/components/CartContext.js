@@ -31,7 +31,7 @@ export function CartProvider({ children }) {
 
   useEffect(() => {
     const data = window.localStorage.getItem("cardsStorage");
-    setCards(JSON.parse(data));
+    if (data !== null) setCards(JSON.parse(data));
   }, []);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ export function CartProvider({ children }) {
   //Storage finishedCards
   useEffect(() => {
     const data2 = window.localStorage.getItem("finishedCardsStorage");
-    setFinishedCards(JSON.parse(data2));
+    if (data2 !== null) setFinishedCards(JSON.parse(data2));
   }, []);
 
   useEffect(() => {
