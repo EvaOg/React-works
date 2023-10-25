@@ -20,10 +20,10 @@ const Menu = () => {
       </div>
       <div className={styles.arrow4} onClick={() => setOpen(!isOpen)}>
         <span
-          className={`${styles.arrow4left}  ${isOpen ? styles.open : ""}`}
+          className={`${styles.arrow4left}  ${isOpen ? styles.openLeft : ""}`}
         ></span>
         <span
-          className={`${styles.arrow4right}  ${isOpen ? styles.open : ""}`}
+          className={`${styles.arrow4right}  ${isOpen ? styles.openRight : ""}`}
         ></span>
       </div>
       {isOpen && <LogIn />}

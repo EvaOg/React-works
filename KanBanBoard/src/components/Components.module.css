@@ -183,11 +183,11 @@ img {
   position: absolute;
   background-color: transparent;
   top: 15px;
-  left: 19px;
+  left: 20px;
   width: 10px;
   height: 2.5px;
   display: block;
-  transform: rotate(35deg);
+  transform: rotate(42deg);
   float: right;
   border-radius: 2px;
 }
@@ -211,7 +211,7 @@ img {
   width: 10px;
   height: 2.5px;
   display: block;
-  transform: rotate(-35deg);
+  transform: rotate(-37deg);
   float: right;
   border-radius: 2px;
 }
@@ -226,14 +226,13 @@ img {
   transition: all 0.5s cubic-bezier(0.25, 1.7, 0.35, 0.8);
   z-index: -1;
 }
-.open .arrow4left:after {
+.openLeft {
   transform-origin: center center;
-  transform: rotate(-70deg);
-  background-color: aqua;
+  transform: rotate(313deg);
 }
-.open .arrow4right:after {
+.openRight {
   transform-origin: center center;
-  transform: rotate(70deg);
+  transform: rotate(46deg);
 }
 
 .logInDiv {
