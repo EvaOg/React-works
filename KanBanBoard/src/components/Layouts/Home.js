@@ -20,6 +20,7 @@ import FinishedCardList from "../finished/FinishedCardList";
 import CartContext from "../CartContext";
 
 function Home() {
+  const [btnDisplay, setBtnDisplay] = useState(true);
   const [component, setComponent] = useState([]);
   const {
     cards,
@@ -38,6 +39,7 @@ function Home() {
 
   function addCardButtonHandler() {
     setComponent(["create component"]);
+    setBtnDisplay(!btnDisplay);
   }
 
   const addCardHandler = (text) => {
@@ -102,7 +104,6 @@ function Home() {
     <div className={styles.home}>
       <div className={styles.block}>
         <Header headerName={"backlog"} />
-
         <div className={styles.cardsList}>
           <CardsList
             cards={cards}
@@ -110,9 +111,17 @@ function Home() {
             taskExplanation={taskExplanationHandler}
           />
           {component.map((item, i) => (
-            <CreateCard addCards={addCardHandler} />
+            <CreateCard
+              addCards={addCardHandler}
+              setBtnDisplayHandler={() => setBtnDisplay(!btnDisplay)}
+            />
           ))}
-          <Button onClick={addCardButtonHandler} />
+          {btnDisplay && (
+            <Button
+              className={styles.btnaddCard}
+              onClick={addCardButtonHandler}
+            />
+          )}
         </div>
       </div>
 
@@ -125,8 +134,8 @@ function Home() {
           />
           {cards.length > 0 && (
             <Button
-              onClick={() => setOption(!option)}
               className={styles.btnaddCard}
+              onClick={() => setOption(!option)}
             />
           )}
           {option && <Option addtoReady={addtoReadyHandler} cards={cards} />}
